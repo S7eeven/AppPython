@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="{% static 'css/details.css' %}" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="containes-details">
+        <div class="container">
+            <img src="{% static 'img/poke.png' %}" class="image" style="width:200px;">
+        </div>
+
+        <div class="container-pokemon">
+            <div class="pokemon-go">
+                <img src="{{ pokemon_data.sprites.front_default }}" alt="{{ pokemon_data.name }} sprite">
+            </div>
+
+            <div class="perfil-pokemon">
+                <p class="name">POKEMON: {{ pokemon_data.name }}</p>
+                <p>Number: {{ pokemon_data.id }}</p>
+                <p>Height: {{ pokemon_data.height }}</p>
+                <p>Weight: {{ pokemon_data.weight }}</p>
+
+                <p>Attack: {{ pokemon_data.stats.0.base_stat }}</p>
+                <p>Defense: {{ pokemon_data.stats.1.base_stat }}</p>
+                <p>Speed: {{ pokemon_data.stats.5.base_stat }}</p>
+                <p>Special Attack: {{ pokemon_data.stats.3.base_stat }}</p>
+                <p>Special Defense: {{ pokemon_data.stats.4.base_stat }}</p>
+                <p>Type: {{ pokemon_data.types.0.type.name }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

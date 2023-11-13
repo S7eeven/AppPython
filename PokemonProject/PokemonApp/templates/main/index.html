@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- Inserting the main image -->
+    <img src="{% static 'img/pokemon.png' %}" class="image" style="width:300px;">
+    <!-- Agregar un campo de búsqueda -->
+    <div class="search-box">
+        
+        <h1 for="pokemon-search" >Search Pokémon</h1>
+        <form method="get" action="{% url 'search_pokemon' %}">
+        <input type="text" id="pokemon-search" name="pokemon-search" placeholder="Enter Pokémon name">
+        <button id="search-button">Search</button>
+        </form>
+    </div>
+
+
+    <hr>
+    <div class="container-principal">
+
+        {% for pokemon in index %}
+        <div class="container-secundario">
+            <ul>
+                <li>
+                    <p>{{ pokemon.name }}</p>
+                    <br>
+                    <img src="{{ pokemon.sprite_url }}" alt="{{ pokemon.name }} Sprite">
+                    <br>
+                    N. of Abilities: {{ pokemon.abilities_count }}
+                    <br>
+                    <a href="{% url 'pokemon_detail' pokemon.name %}" class="btn btn-more-details">More Details</a>
+                </li>
+            </ul>
+        </div>
+        {% endfor %}
+
+
+    </div>
+    <div class="pagination">
+        {% if previous_page %}
+        <a href="?page={{ previous_page }}">Previous</a>
+        {% endif %}
+        {% if next_page %}
+        <a href="?page={{ next_page }}">Next</a>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
